@@ -52,6 +52,11 @@ export default function Home() {
         <div className="hero__content">
           <h1 className="hero__name">QUENTIN</h1>
           <p className="hero__subtitle">Portrait Photographer</p>
+          <p className="hero__description">
+            Capturing memories for models, brands and events.
+            <br />
+            Based in Paris.
+          </p>
           <div className="hero__scroll" aria-hidden="true">
             <span>Scroll</span>
             <span className="hero__arrow" />

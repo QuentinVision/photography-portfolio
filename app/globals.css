@@ -209,6 +209,7 @@ body {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
 }
 
 .hero__name {
@@ -227,6 +228,15 @@ body {
   font-size: clamp(1rem, 2.6vw, 1.4rem);
   font-weight: 400;
   color: #5b5b5b;
+}
+
+.hero__description {
+  margin: 0;
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  font-size: clamp(0.95rem, 2.2vw, 1.15rem);
+  font-weight: 400;
+  line-height: 1.5;
+  color: #6a6a6a;
 }
 
 .hero__scroll {
@@ -446,6 +456,203 @@ body {
 @media (prefers-reduced-motion: reduce) {
   .masonry-grid__media {
     transition: none;
+  }
+}
+
+.contact-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 60;
+  width: 56px;
+  height: 56px;
+  border: none;
+  border-radius: 999px;
+  background: var(--foreground);
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.18);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.contact-button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 18px 34px rgba(0, 0, 0, 0.22);
+}
+
+.contact-button:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 4px;
+  box-shadow: 0 0 0 3px rgba(58, 58, 58, 0.3);
+}
+
+.contact-button__icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+}
+
+.contact-modal__panel {
+  width: min(100%, 480px);
+  padding: 24px;
+  border-radius: 20px;
+  background: #fff;
+  color: var(--foreground);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.22);
+  font-family: var(--font-montserrat), "Montserrat", Arial, sans-serif;
+  animation: contact-fade-in 0.25s ease-out both;
+}
+
+.contact-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.contact-modal__title {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--foreground);
+}
+
+.contact-modal__close {
+  border: none;
+  background: transparent;
+  color: var(--foreground);
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.contact-modal__close:hover {
+  opacity: 1;
+}
+
+.contact-modal__close-icon {
+  width: 24px;
+  height: 24px;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-form__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-form__label {
+  font-size: 0.9rem;
+  color: var(--foreground);
+}
+
+.contact-form__input,
+.contact-form__textarea {
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 12px;
+  padding: 10px 14px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  color: var(--foreground);
+  background: #fff;
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-form__input:focus,
+.contact-form__textarea:focus {
+  border-color: rgba(58, 58, 58, 0.6);
+  box-shadow: 0 0 0 3px rgba(58, 58, 58, 0.15);
+  outline: none;
+}
+
+.contact-form__textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.contact-form__submit {
+  border: none;
+  border-radius: 12px;
+  padding: 12px 16px;
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--foreground);
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+}
+
+.contact-form__submit:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.16);
+}
+
+.contact-form__submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+.contact-form__status {
+  margin: 16px 0 0;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.contact-form__status--success {
+  color: #1f7a4f;
+}
+
+.contact-form__status--error {
+  color: #b42318;
+}
+
+@keyframes contact-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-modal {
+    padding: 16px;
+  }
+
+  .contact-modal__panel {
+    padding: 20px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-modal__panel {
+    animation: none;
   }
 }
 

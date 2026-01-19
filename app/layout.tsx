@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
+
+import ContactButton from "./components/ContactButton";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -34,6 +36,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
         {children}
+        <ContactButton />
       </body>
     </html>
   );

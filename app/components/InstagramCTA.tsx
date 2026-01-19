@@ -1,11 +1,3 @@
-import Image from "next/image";
-
-const previewImages = [
-  "/photos/E1.jpg",
-  "/photos/E2.jpg",
-  "/photos/E3.jpg",
-];
-
 export default function InstagramCTA() {
   return (
     <section className="instagram-cta" aria-labelledby="instagram-cta-title">
@@ -31,19 +23,6 @@ export default function InstagramCTA() {
           </span>
           <span className="instagram-cta__button-text">Instagram</span>
         </a>
-      </div>
-      <div className="instagram-cta__preview" aria-hidden="true">
-        {previewImages.map((src) => (
-          <div key={src} className="instagram-cta__preview-item">
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes="(max-width: 640px) 30vw, 120px"
-              className="instagram-cta__preview-image"
-            />
-          </div>
-        ))}
       </div>
     </section>
   );
