@@ -200,13 +200,6 @@ export default function ImageModal({
             />
           </div>
         </div>
-        {(photo.title || photo.description || photo.category) && (
-          <div className="image-modal__info">
-            <h3>{photo.title ?? "Untitled"}</h3>
-            {photo.category && <p className="image-modal__category">{photo.category}</p>}
-            {photo.description && <p className="image-modal__description">{photo.description}</p>}
-          </div>
-        )}
       </div>
     </div>
   );

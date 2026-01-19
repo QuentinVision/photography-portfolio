@@ -598,40 +598,6 @@ body {
   right: 32px;
 }
 
-.image-modal__info {
-  position: absolute;
-  right: 32px;
-  bottom: 32px;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(25px);
-  border: 1px solid rgba(31, 31, 31, 0.12);
-  border-radius: 16px;
-  padding: 24px;
-  max-width: 320px;
-  z-index: 2;
-}
-
-.image-modal__info h3 {
-  margin: 0 0 12px;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: #111;
-}
-
-.image-modal__category {
-  margin: 0 0 8px;
-  font-size: 0.75rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(31, 31, 31, 0.6);
-}
-
-.image-modal__description {
-  margin: 0;
-  font-size: 0.85rem;
-  line-height: 1.6;
-  color: rgba(31, 31, 31, 0.7);
-}
 
 @media (prefers-reduced-motion: reduce) {
   .masonry-grid__media {
@@ -1155,13 +1121,25 @@ body {
 }
 
 @media (max-width: 768px) {
-  .glass-nav__links {
-    display: none;
+  .glass-nav__content {
+    padding: 10px 14px;
+    gap: 16px;
+    max-width: calc(100vw - 32px);
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
-  .glass-nav__content {
-    padding: 12px 20px;
-    gap: 0;
+  .glass-nav__links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .glass-nav__links a,
+  .glass-nav__link,
+  .glass-nav__cta {
+    font-size: 0.8rem;
   }
 
   .hero__content {
