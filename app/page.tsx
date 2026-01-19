@@ -67,6 +67,7 @@ export default function Home() {
         <div className="gallery__inner">
           <InstagramCTA />
           <MasonryGrid photos={photos} category="portfolio" />
+          <InstagramCTA />
         </div>
       </section>
     </main>

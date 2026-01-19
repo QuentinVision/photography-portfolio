@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Montserrat } from "next/font/google";
 
 import ContactButton from "./components/ContactButton";
+import ContactProvider from "./components/ContactProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -30,13 +31,27 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const currentYear = new Date().getFullYear();
+
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${montserrat.variable} antialiased`}
       >
-        {children}
-        <ContactButton />
+        <ContactProvider>
+          {children}
+          <footer className="site-footer">
+            <p className="site-footer__legal">
+              All photographs and content are protected by copyright.
+              Unauthorized use, reproduction, or distribution is prohibited
+              without prior written permission.
+            </p>
+            <p className="site-footer__copyright">
+              © {currentYear} Quentin Rigaud. All rights reserved.
+            </p>
+          </footer>
+          <ContactButton />
+        </ContactProvider>
       </body>
     </html>
   );

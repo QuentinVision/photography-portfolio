@@ -1,16 +1,14 @@
 "use client";
 
-import { useState } from "react";
-
-import ContactModal from "./ContactModal";
+import { useContact } from "./ContactProvider";
 
 export default function ContactButton() {
-  const [isOpen, setIsOpen] = useState(false);
+  const { openContact } = useContact();
 
   return (
     <>
       <button
-        onClick={() => setIsOpen(true)}
+        onClick={openContact}
         className="contact-button"
         aria-label="Contact me"
       >
@@ -30,7 +28,6 @@ export default function ContactButton() {
         </svg>
       </button>
 
-      <ContactModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </>
   );
 }
