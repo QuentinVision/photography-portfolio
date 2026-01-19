@@ -1,4 +1,7 @@
+import Image from "next/image";
+
 import FluidGlassBackground from "./components/FluidGlassBackground";
+import GlassNav from "./components/GlassNav";
 import InstagramCTA from "./components/InstagramCTA";
 import MasonryGrid from "./components/MasonryGrid";
 
@@ -39,16 +42,61 @@ const photoSources = [
   "/photos/T3.jpg",
 ];
 
-const photos = photoSources.map((src) => ({
-  src,
-  alt: "",
-}));
+const formatTitle = (src: string) => {
+  const filename = src.split("/").pop() ?? src;
+  const base = filename.replace(/\.[^/.]+$/, "");
+  return base
+    .replace(/([a-zA-Z])(\d)/g, "$1 $2")
+    .replace(/([a-z])([A-Z])/g, "$1 $2")
+    .replace(/[_-]/g, " ")
+    .trim();
+};
+
+const getCategory = (src: string) => {
+  const name = (src.split("/").pop() ?? "").toLowerCase();
+  if (name.startsWith("event")) return "Event";
+  if (name.startsWith("defile")) return "Runway";
+  if (name.startsWith("fr")) return "Editorial";
+  if (name.startsWith("t")) return "Studio";
+  if (name.startsWith("n")) return "Portrait";
+  if (name.startsWith("c")) return "Portrait";
+  if (name.startsWith("b")) return "Fashion";
+  if (name.startsWith("a")) return "Portrait";
+  if (name.startsWith("e")) return "Editorial";
+  return "Portrait";
+};
+
+const buildDescription = (title: string, category: string) =>
+  `A ${category.toLowerCase()} capture from Quentin's portfolio.`;
+
+const photos = photoSources.map((src) => {
+  const title = formatTitle(src);
+  const category = getCategory(src);
+  return {
+    src,
+    alt: title,
+    title,
+    category,
+    description: buildDescription(title, category),
+  };
+});
 
 export default function Home() {
   return (
-    <main className="site">
+    <main className="site" id="top">
       <FluidGlassBackground />
-      <section className="hero">
+      <GlassNav />
+      <section className="hero" id="about">
+        <div className="hero__background" aria-hidden="true">
+          <Image
+            src="/photos/background.jpg"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="hero__bg-image"
+          />
+        </div>
         <div className="hero__content">
           <h1 className="hero__name">QUENTIN</h1>
           <p className="hero__subtitle">Portrait Photographer</p>
@@ -63,13 +111,13 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <section className="gallery">
+      <InstagramCTA />
+      <section className="gallery" id="work">
         <div className="gallery__inner">
-          <InstagramCTA />
           <MasonryGrid photos={photos} category="portfolio" />
-          <InstagramCTA />
         </div>
       </section>
+      <InstagramCTA id="contact" />
     </main>
   );
 }

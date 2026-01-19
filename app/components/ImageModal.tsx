@@ -7,6 +7,9 @@ import { useEffect, useRef, useState } from "react";
 export type ModalPhoto = {
   src: string;
   alt: string;
+  title?: string;
+  category?: string;
+  description?: string;
 };
 
 type ImageModalProps = {
@@ -144,9 +147,19 @@ export default function ImageModal({
 
   return (
     <div className="image-modal" role="dialog" aria-modal="true">
-      <button className="image-modal__backdrop" onClick={onClose} aria-label="Close" />
+      <button
+        className="image-modal__backdrop"
+        onClick={onClose}
+        aria-label="Close"
+        type="button"
+      />
       <div className="image-modal__content">
-        <button className="image-modal__close" onClick={onClose} aria-label="Close">
+        <button
+          className="image-modal__close"
+          onClick={onClose}
+          aria-label="Close"
+          type="button"
+        >
           ×
         </button>
         {canNavigate && (
@@ -155,6 +168,7 @@ export default function ImageModal({
               className="image-modal__nav image-modal__nav--prev"
               onClick={() => handleNavigate("prev")}
               aria-label="Previous image"
+              type="button"
             >
               ‹
             </button>
@@ -162,6 +176,7 @@ export default function ImageModal({
               className="image-modal__nav image-modal__nav--next"
               onClick={() => handleNavigate("next")}
               aria-label="Next image"
+              type="button"
             >
               ›
             </button>
@@ -185,6 +200,13 @@ export default function ImageModal({
             />
           </div>
         </div>
+        {(photo.title || photo.description || photo.category) && (
+          <div className="image-modal__info">
+            <h3>{photo.title ?? "Untitled"}</h3>
+            {photo.category && <p className="image-modal__category">{photo.category}</p>}
+            {photo.description && <p className="image-modal__description">{photo.description}</p>}
+          </div>
+        )}
       </div>
     </div>
   );
