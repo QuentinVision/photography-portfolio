@@ -95,7 +95,9 @@ export default function ImageModal({
       touchStart.current = { x: event.touches[0].clientX, y: event.touches[0].clientY };
     }
     if (event.touches.length === 2) {
-      const [a, b] = event.touches;
+      const a = event.touches.item(0);
+      const b = event.touches.item(1);
+      if (!a || !b) return;
       const distance = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
       setStartDistance(distance);
       setStartZoom(zoom);
@@ -105,7 +107,9 @@ export default function ImageModal({
   const handleTouchMove = (event: TouchEvent<HTMLDivElement>) => {
     if (event.touches.length === 2 && startDistance) {
       event.preventDefault();
-      const [a, b] = event.touches;
+      const a = event.touches.item(0);
+      const b = event.touches.item(1);
+      if (!a || !b) return;
       const distance = Math.hypot(a.clientX - b.clientX, a.clientY - b.clientY);
       const nextZoom = clamp((distance / startDistance) * startZoom, MIN_ZOOM, MAX_ZOOM);
       setZoom(nextZoom);
